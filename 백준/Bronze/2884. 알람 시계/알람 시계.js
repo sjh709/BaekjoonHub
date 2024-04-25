@@ -1,8 +1,5 @@
-const readline = require("readline");
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout,
-});
+const fs = require("fs");
+const line = fs.readFileSync("/dev/stdin").toString().split("\n");
 
 const check = (input) => {
   let h = Number(input[0]);
@@ -21,9 +18,5 @@ const check = (input) => {
   console.log(h, m);
 };
 
-rl.on("line", function (line) {
-  const input = line.split(" ");
-  check(input);
-}).on("close", function () {
-  process.exit();
-});
+const input = line[0].split(" ");
+check(input);
