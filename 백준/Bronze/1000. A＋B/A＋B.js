@@ -1,14 +1,9 @@
-const readline = require("readline");
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout,
-});
+const fs = require("fs");
+const input = fs.readFileSync("/dev/stdin").toString().split("\n");
 
-rl.on("line", function (line) {
-  const input = line.split(" ");
-  const result = Number(input[0]) + Number(input[1]);
-  console.log(result);
-  rl.close();
-}).on("close", function () {
-  process.exit();
-});
+let line = input[0].split(" ");
+
+let a = Number(line[0]);
+let b = Number(line[1]);
+
+console.log(a + b);
