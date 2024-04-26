@@ -1,8 +1,7 @@
-const readline = require("readline");
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout,
-});
+const fs = require("fs");
+const line = fs.readFileSync("/dev/stdin").toString().split("\n");
+
+const input = line.map(Number);
 
 const solution = (input) => {
   let minValue = 0;
@@ -21,10 +20,4 @@ const solution = (input) => {
   console.log(result);
 };
 
-let input = [];
-rl.on("line", function (line) {
-  input.push(Number(line));
-}).on("close", function () {
-  solution(input);
-  process.exit();
-});
+solution(input);
