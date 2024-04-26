@@ -1,14 +1,11 @@
-const readline = require("readline");
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout,
-});
+const fs = require("fs");
+const line = fs.readFileSync("/dev/stdin").toString().split("\n");
 
-let input = [];
-rl.on("line", function (line) {
-  input.push(Number(line) % 42);
-}).on("close", function () {
-  const set = new Set(input);
-  console.log(set.size);
-  process.exit();
-});
+const input = line.map(Number);
+let set = new Set();
+
+for (let i = 0; i < 10; i++) {
+  set.add(input[i] % 42);
+}
+
+console.log(set.size);
