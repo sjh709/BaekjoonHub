@@ -1,8 +1,7 @@
-const readline = require("readline");
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout,
-});
+const fs = require("fs");
+const input = fs.readFileSync("/dev/stdin").toString().trim().split("\n");
+
+const [a, b] = input[0].split(" ");
 
 const solution = (a, b) => {
   const reverseA = a.split("").reverse().join("");
@@ -10,10 +9,4 @@ const solution = (a, b) => {
   console.log(reverseA > reverseB ? reverseA : reverseB);
 };
 
-rl.on("line", function (line) {
-  const [a, b] = line.split(" ");
-  solution(a, b);
-  rl.close();
-}).on("close", function () {
-  process.exit();
-});
+solution(a, b);
