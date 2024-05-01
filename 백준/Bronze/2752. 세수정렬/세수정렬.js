@@ -1,13 +1,6 @@
-const readline = require('readline');
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout,
-});
+const fs = require('fs');
+const input = fs.readFileSync('/dev/stdin').toString().split('\n');
 
-rl.on('line', function (line) {
-  const arr = line.split(' ');
-  arr.sort((a, b) => a - b);
-  console.log(arr[0], arr[1], arr[2]);
-}).on('close', function () {
-  process.exit();
-});
+const arr = input[0].split(' ');
+arr.sort((a, b) => a - b);
+console.log(arr[0], arr[1], arr[2]);
