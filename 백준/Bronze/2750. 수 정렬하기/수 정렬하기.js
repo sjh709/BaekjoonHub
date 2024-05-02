@@ -1,15 +1,13 @@
-const readline = require('readline');
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout,
-});
+const fs = require('fs');
+const input = fs.readFileSync('/dev/stdin').toString().split('\n');
 
-const input = [];
-rl.on('line', function (line) {
-  input.push(line);
-}).on('close', function () {
-  input.shift();
-  input.sort((a, b) => a - b);
-  input.forEach((v) => console.log(v));
-  process.exit();
-});
+const n = input[0];
+const arr = [];
+for (let i = 1; i <= n; i++) {
+  arr.push(Number(input[i]));
+}
+arr.sort((a, b) => a - b);
+
+let answer = '';
+arr.forEach((v) => (answer += v + '\n'));
+console.log(answer);
