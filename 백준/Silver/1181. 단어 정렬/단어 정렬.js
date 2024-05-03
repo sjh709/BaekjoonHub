@@ -3,12 +3,11 @@ const input = fs.readFileSync('/dev/stdin').toString().trim().split('\n');
 
 const solution = (input) => {
   const n = Number(input[0]);
-  const data = [];
+  let data = [];
   for (let i = 1; i <= n; i++) {
-    if (!data.includes(input[i])) {
-      data.push(input[i]);
-    }
+    data.push(input[i]);
   }
+  data = [...new Set(data)];
 
   data.sort((a, b) => {
     if (a.length !== b.length) return a.length - b.length;
