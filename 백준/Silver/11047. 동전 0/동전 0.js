@@ -7,15 +7,12 @@ const solution = (input) => {
   for (let i = 1; i <= n; i++) {
     coinArr.push(Number(input[i]));
   }
-  coinArr.sort((a, b) => b - a);
 
   let answer = 0;
-  coinArr.forEach((coin) => {
-    if (coin <= k) {
-      answer += parseInt(k / coin);
-      k %= coin;
-    }
-  });
+  for (let i = n - 1; i >= 0; i--) {
+    answer += parseInt(k / coinArr[i]);
+    k %= coinArr[i];
+  }
 
   console.log(answer);
 };
