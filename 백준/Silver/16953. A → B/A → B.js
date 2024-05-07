@@ -1,10 +1,8 @@
-const readline = require('readline');
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout,
-});
+const fs = require('fs');
+const input = fs.readFileSync('/dev/stdin').toString().trim().split('\n');
 
-const solution = (a, b) => {
+const solution = (input) => {
+  let [a, b] = input[0].split(' ').map(Number);
   let cnt = 0;
 
   while (a < b) {
@@ -21,10 +19,4 @@ const solution = (a, b) => {
   console.log(a === b ? cnt + 1 : -1);
 };
 
-rl.on('line', function (line) {
-  const [a, b] = line.split(' ').map(Number);
-  solution(a, b);
-  rl.close();
-}).on('close', function () {
-  process.exit();
-});
+solution(input);
