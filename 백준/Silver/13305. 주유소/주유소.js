@@ -15,11 +15,11 @@ const solution = (input) => {
     cost[i] = minCost;
   }
 
-  let answer = 0;
+  let answer = BigInt(0);
   for (let i = 0; i < n - 1; i++) {
-    answer += cost[i] * dist[i];
+    answer += BigInt(cost[i]) * BigInt(dist[i]);
   }
-  console.log(answer);
+  console.log(String(answer));
 };
 
 const input = [];
