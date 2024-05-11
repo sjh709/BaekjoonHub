@@ -5,15 +5,16 @@ const solution = (input) => {
   const [n, m] = input[0].split(' ').map(Number);
   const arr = input[1].split(' ').map(Number);
 
-  let start = 1;
+  let start = 0;
   let end = arr.reduce((acc, curr) => Math.max(acc, curr), 0);
+
   let result = 0;
   while (start <= end) {
     let mid = parseInt((start + end) / 2);
     let total = 0;
 
     for (let x of arr) {
-      total += x - Math.min(mid, x);
+      if (x > mid) total += x - mid;
     }
 
     if (total >= m) {
