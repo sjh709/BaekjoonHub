@@ -15,30 +15,27 @@ const solution = (input) => {
   let visited = new Array(n + 1).fill(false);
 
   let answer = 1e9;
-  const dfs = (m, depth, start) => {
-    if (m === depth) {
+  const dfs = (depth, start) => {
+    if (depth >= 1) {
       let [s, b] = [1, 0];
       for (let x of result) {
         s *= sb[x][0];
         b += sb[x][1];
       }
       answer = Math.min(answer, Math.abs(s - b));
-      return;
     }
 
     for (let i = start; i < arr.length; i++) {
       if (visited[i]) continue;
       result.push(arr[i]);
       visited[i] = true;
-      dfs(m, depth + 1, i + 1);
+      dfs(depth + 1, i + 1);
       result.pop();
       visited[i] = false;
     }
   };
 
-  for (let i = 1; i <= n; i++) {
-    dfs(i, 0, 0);
-  }
+  dfs(0, 0);
 
   console.log(answer);
 };
