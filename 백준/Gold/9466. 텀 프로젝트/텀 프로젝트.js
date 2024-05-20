@@ -29,7 +29,7 @@ const solution = (input) => {
     };
 
     for (let i = 1; i <= n; i++) {
-      dfs(i);
+      if (!visited[i]) dfs(i);
     }
     console.log(n - result.length);
 
