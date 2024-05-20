@@ -2,11 +2,11 @@ const fs = require('fs');
 const input = fs.readFileSync('/dev/stdin').toString().trim().split('\n');
 
 const solution = (input) => {
-  const t = Number(input[0]);
+  let t = Number(input[0]);
   let line = 1;
-  for (let i = 0; i < t; i++) {
-    const n = Number(input[line + i]);
-    const graph = [0, ...input[line + i + 1].split(' ').map(Number)];
+  while (t--) {
+    const n = Number(input[line]);
+    const graph = [0, ...input[line + 1].split(' ').map(Number)];
 
     let visited = new Array(n + 1).fill(false);
     let finished = new Array(n + 1).fill(false);
@@ -33,7 +33,7 @@ const solution = (input) => {
     }
     console.log(n - result.length);
 
-    line += 1;
+    line += 2;
   }
 };
 
