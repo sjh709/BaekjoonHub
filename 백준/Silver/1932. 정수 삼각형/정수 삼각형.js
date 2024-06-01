@@ -1,37 +1,22 @@
 const fs = require('fs');
 const input = fs.readFileSync('/dev/stdin').toString().trim().split('\n');
 
-const solution = (input) => {
-  let n = Number(input[0]);
-  let arr = new Array(n);
-  for (let i = 0; i < n; i++) arr[i] = new Array(n).fill(0);
-  for (let i = 1; i <= n; i++) {
-    let line = input[i].split(' ').map(Number);
-    for (let j = 0; j < line.length; j++) {
-      arr[i - 1][j] = line[j];
-    }
+let n = Number(input[0]);
+let dp = [];
+
+for (let i = 1; i <= n; i++) {
+  let data = input[i].split(' ').map(Number);
+  dp.push(data);
+}
+
+for (let i = 1; i < n; i++) {
+  for (let j = 0; j <= i; j++) {
+    let upLeft = 0;
+    if (j !== 0) upLeft = dp[i - 1][j - 1];
+    let up = 0;
+    if (j !== i) up = dp[i - 1][j];
+    dp[i][j] = dp[i][j] + Math.max(upLeft, up);
   }
+}
 
-  let dp = new Array(n);
-  for (let i = 0; i < n; i++) dp[i] = new Array(n).fill(0);
-
-  dp[0][0] = arr[0][0];
-  for (let i = 1; i < n; i++) {
-    for (let j = 0; j <= i; j++) {
-      if (j === 0) {
-        dp[i][j] = dp[i - 1][j] + arr[i][j];
-      } else if (j === i) {
-        dp[i][j] = dp[i - 1][j - 1] + arr[i][j];
-      } else {
-        dp[i][j] = Math.max(
-          dp[i - 1][j - 1] + arr[i][j],
-          dp[i - 1][j] + arr[i][j]
-        );
-      }
-    }
-  }
-
-  console.log(Math.max(...dp[n - 1]));
-};
-
-solution(input);
+console.log(Math.max(...dp[n - 1]));
